@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/bweston92/goenv.svg?branch=master)](https://travis-ci.org/bweston92/goenv)
+
 # Environment helpers for Golang
 
 Uses the `os.Getenv` but supports file resolving and base64 encoded values out the box.
