@@ -27,3 +27,7 @@ func Test_base64Middleware_DoesNotModifyValueWithoutPrefix(t *testing.T) {
 func Test_base64Middleware_DoesModifyValueWithPrefix(t *testing.T) {
 	assert.Equal(t, "abc", base64Middleware("base64:YWJj"))
 }
+
+func Test_base64Middleware_ReturnsEmptyStringIfDecodeFails(t *testing.T) {
+	assert.Equal(t, "", base64Middleware("base64:WH@T"))
+}

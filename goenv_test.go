@@ -43,6 +43,22 @@ func Test_EnvLocator_Get_GetsValueFromFileIfExists(t *testing.T) {
 func Test_EnvLocator_Get_ReturnsNothingIfNotFound(t *testing.T) {
 	esr := stubResolver(map[string]string{})
 	el := New(esr, afero.NewMemMapFs())
+	assert.Equal(t, "", el.Get("UNKNOWN"))
+}
 
-	assert.Equal(t, "", el.Get("unknown"))
+func Test_EnvLocator_Get_ReturnsNothingIfFileNotFound(t *testing.T) {
+	esr := stubResolver(map[string]string{
+		"UNKNOWN_FILE": "/dev/nullz",
+	})
+	el := New(esr, afero.NewMemMapFs())
+	assert.Equal(t, "", el.Get("UNKNOWN"))
+}
+
+func Test_Get_UsesGlobal(t *testing.T) {
+	esr := stubResolver(map[string]string{
+		"TEST": "123",
+	})
+	OS = New(esr, afero.NewMemMapFs())
+
+	assert.Equal(t, OS.Get("TEST"), Get("TEST"))
 }
