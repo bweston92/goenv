@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/bweston92/goenv.svg?branch=master)](https://travis-ci.org/bweston92/goenv)
+[![codecov](https://codecov.io/gh/bweston92/goenv/branch/master/graph/badge.svg)](https://codecov.io/gh/bweston92/goenv)
 
 # Environment helpers for Golang
 
