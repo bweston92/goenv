@@ -2,6 +2,7 @@ package goenv
 
 import (
 	"encoding/base64"
+	"strings"
 )
 
 type stack []func(string) string
@@ -17,6 +18,7 @@ func (s stack) Play(o string) string {
 func defaultStack() stack {
 	return stack{
 		base64Middleware,
+		trimSpaceMiddleware,
 	}
 }
 
@@ -32,4 +34,8 @@ func base64Middleware(in string) string {
 	}
 
 	return string(o)
+}
+
+func trimSpaceMiddleware(in string) string {
+	return strings.TrimSpace(in)
 }
